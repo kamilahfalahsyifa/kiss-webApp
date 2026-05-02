@@ -1,0 +1,91 @@
+@extends('layouts.dashboard')
+
+@section('page_title', 'Edit Activity')
+@section('page_subtitle', 'Update replacement activity')
+
+@section('content')
+<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
+    <h3 class="text-lg font-bold text-gray-800 mb-6">Edit Replacement Activity</h3>
+
+    @if($errors->any())
+    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-900">
+        <ul class="list-disc list-inside">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    <form method="POST" action="{{ route('mekanik.activities.update', $activity->id) }}" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">Code Number <span class="text-red-500">*</span></label>
+                <input type="text" name="code_number" value="{{ old('code_number', $activity->code_number) }}" required placeholder="e.g. PC-001"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('code_number') border-red-500 @enderror">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">HM Unit <span class="text-red-500">*</span></label>
+                <input type="text" name="hm_km" value="{{ old('hm_km', $activity->hm_km) }}" required placeholder="e.g. 12500"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('hm_km') border-red-500 @enderror">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">Date <span class="text-red-500">*</span></label>
+                <input type="date" name="replacement_date" value="{{ old('replacement_date', $activity->replacement_date->format('Y-m-d')) }}" required
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('replacement_date') border-red-500 @enderror">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">Category <span class="text-red-500">*</span></label>
+                <input type="text" name="category" value="{{ old('category', $activity->category) }}" required placeholder="e.g. Engine, Hydraulic, Brake"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('category') border-red-500 @enderror">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">Component <span class="text-red-500">*</span></label>
+                <input type="text" name="component_name" value="{{ old('component_name', $activity->component_name) }}" required placeholder="e.g. Hoist Cylinder, Engine Oil"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('component_name') border-red-500 @enderror">
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">PIC <span class="text-red-500">*</span></label>
+                <input type="text" name="pic" value="{{ old('pic', $activity->pic) }}" required placeholder="e.g. John, Jane, Bob (pisahkan dengan koma untuk multiple)"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('pic') border-red-500 @enderror">
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-900 mb-2">Activity / Notes</label>
+                <textarea name="notes" rows="3" placeholder="Describe the activity..."
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('notes') border-red-500 @enderror">{{ old('notes', $activity->notes) }}</textarea>
+            </div>
+
+            <div class="md:col-span-2">
+                <label class="block text-sm font-medium text-gray-900 mb-2">Upload Image (leave empty to keep current)</label>
+                <input type="file" name="image" accept="image/*"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('image') border-red-500 @enderror">
+                <p class="text-xs text-gray-500 mt-1">Max size: 2MB. Formats: JPG, PNG, GIF</p>
+
+                @if($activity->image)
+                <div class="mt-3">
+                    <p class="text-sm text-gray-500 mb-2">Current Image:</p>
+                    <img src="{{ asset('storage/' . $activity->image) }}" alt="Current Image"
+                         class="w-32 h-32 object-cover rounded-lg border border-gray-200">
+                </div>
+                @endif
+            </div>
+        </div>
+
+        <div class="mt-6 flex gap-4">
+            <button type="submit" class="btn bg-maroon text-white hover:bg-maroon-dark px-8">
+                <i class="fas fa-save mr-2"></i> Update Activity
+            </button>
+            <a href="{{ route('mekanik.activities.index') }}" class="btn btn-ghost">Cancel</a>
+        </div>
+    </form>
+</div>
+@endsection
