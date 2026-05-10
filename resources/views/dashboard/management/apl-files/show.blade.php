@@ -10,7 +10,7 @@ $isPlanner = Auth::user()->role === 'planner';
 
 @section('content')
 <!-- Horizontal Scrollable Sheet Tabs -->
-<div class="bg-white/80 backdrop-blur rounded-2xl shadow-sm p-4 border border-gray-100">
+<div class="bg-white/80 backdrop-blur rounded-2xl shadow-sm p-4 border border-gray-100 mb-6">
     <div class="flex items-center justify-between">
         
         <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap flex-1">
@@ -59,7 +59,7 @@ $isPlanner = Auth::user()->role === 'planner';
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-2">Sheet Name</label>
                 <input type="text" name="name" required placeholder="e.g. Sheet 1"
-                    class="w-full px-4 py-2 rounded-xl border border-gray-300 focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
             </div>
             <div class="flex gap-3">
                 <button type="submit" class="btn bg-maroon text-white">Save</button>
@@ -75,7 +75,7 @@ $isPlanner = Auth::user()->role === 'planner';
 $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->sheets->first();
 @endphp
 
-<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
+<div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
     <div class="flex items-center justify-between mb-6">
         <h3 class="text-lg font-bold text-gray-800">
             {{ $currentSheet->name ?? 'No Sheet' }}
@@ -104,39 +104,35 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Part Number *</label>
-                        <input type="text" name="part_number" required class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <input type="text" name="part_number" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Stock Code *</label>
-                        <input type="text" name="stock_code" required class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <input type="text" name="stock_code" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
                     <div class="col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                        <input type="text" name="description" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <input type="text" name="description" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Qty *</label>
-                        <input type="number" name="qty" required min="0" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <input type="number" name="qty" required min="0" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Stock</label>
-                        <input type="text" name="stock" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <input type="text" name="stock" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Price *</label>
-                        <input type="number" name="price" required min="0" step="0.01" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Amount *</label>
-                        <input type="number" name="amount" required min="0" step="0.01" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <input type="number" name="price" required min="0" step="0.01" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">WR</label>
-                        <input type="text" name="wr" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <input type="text" name="wr" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Install</label>
-                        <select name="remarks_install" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                        <select name="remarks_install" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                             <option value="">-</option>
                             <option value="YES">YES</option>
                             <option value="NO">NO</option>
@@ -154,56 +150,59 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
 
     <div class="overflow-x-auto">
         <table class="table w-full">
-            <thead>
-                <tr class="border-b border-gray-200 bg-gray-50">
-                    <th class="text-gray-600 font-semibold px-4 py-3">Part Number</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3">Stock Code</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3">Description</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3 text-right">Qty</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3">Stock</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3 text-right">Price</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3 text-right">Amount</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3">WR</th>
-                    <th class="text-gray-600 font-semibold px-4 py-3">Install</th>
-                    @if($isPlanner)<th class="text-gray-600 font-semibold px-4 py-3 text-center">Actions</th>@endif
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">Part Number</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">Stock Code</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">Description</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-right">Qty</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">Stock</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-right">Price</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-right">Amount</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">WR</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">Install</th>
+                    @if($isPlanner)<th class="text-gray-600 font-semibold px-4 py-4 text-center">Actions</th>@endif
                 </tr>
             </thead>
             <tbody>
                 @forelse($currentSheet && $currentSheet->items ? $currentSheet->items : [] as $item)
-                <tr class="border-b border-gray-100 hover:bg-pink-bg">
-                    <td class="px-4 py-3 font-medium">{{ $item->part_number }}</td>
-                    <td class="px-4 py-3">{{ $item->stock_code }}</td>
-                    <td class="px-4 py-3 text-sm">{{ $item->description ?? '-' }}</td>
-                    <td class="px-4 py-3 text-right">{{ $item->qty }}</td>
-                    <td class="px-4 py-3">{{ $item->stock }}</td>
-                    <td class="px-4 py-3 text-right">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
-                    <td class="px-4 py-3 text-right font-semibold text-maroon">Rp {{ number_format($item->amount, 0, ',', '.') }}</td>
-                    <td class="px-4 py-3">{{ $item->wr ?? '-' }}</td>
-                    <td class="px-4 py-3">
-                        <span class="badge {{ $item->remarks_install === 'YES' ? 'badge-success' : 'badge-error' }}">
+                <tr class="border-b border-gray-100 hover:bg-pink-bg/50 transition">
+                    <td class="px-4 py-4 font-medium text-gray-800">{{ $item->part_number }}</td>
+                    <td class="px-4 py-4 text-gray-600">{{ $item->stock_code }}</td>
+                    <td class="px-4 py-4 text-gray-600 text-sm">{{ $item->description ?? '-' }}</td>
+                    <td class="px-4 py-4 text-gray-600 text-right">{{ $item->qty }}</td>
+                    <td class="px-4 py-4 text-gray-600">{{ $item->stock }}</td>
+                    <td class="px-4 py-4 text-gray-600 text-right">Rp {{ number_format($item->price, 0, ',', '.') }}</td>
+                    <td class="px-4 py-4 text-gray-800 text-right font-semibold text-maroon">Rp {{ number_format($item->amount, 0, ',', '.') }}</td>
+                    <td class="px-4 py-4 text-gray-600">{{ $item->wr ?? '-' }}</td>
+                    <td class="px-4 py-4">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium {{ $item->remarks_install === 'YES' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
                             {{ $item->remarks_install ?? '-' }}
                         </span>
                     </td>
                     @if($isPlanner)
-                    <td class="px-4 py-3 text-center">
-                        <button onclick="editItem({{ $item->id }}, '{{ $item->part_number }}', '{{ $item->stock_code }}', '{{ $item->description ?? '' }}', {{ $item->qty }}, '{{ $item->stock ?? '' }}', {{ $item->price }}, {{ $item->amount }}, '{{ $item->wr ?? '' }}', '{{ $item->remarks_install ?? '' }}')" class="btn btn-xs btn-warning mr-1">
-                            <i class="fas fa-edit"></i>
+                    <td class="px-4 py-4">
+                        <div class="flex items-center justify-center gap-2">
+                        <button onclick="editItem({{ $item->id }}, '{{ $item->part_number }}', '{{ $item->stock_code }}', '{{ $item->description ?? '' }}', {{ $item->qty }}, '{{ $item->stock ?? '' }}', {{ $item->price }}, '{{ $item->wr ?? '' }}', '{{ $item->remarks_install ?? '' }}')" class="btn btn-sm bg-yellow-100 text-yellow-700 hover:bg-yellow-200 border-none px-3 py-1.5 rounded-lg">
+                            <i class="fas fa-edit text-xs"></i>
                         </button>
                         <form action="{{ route('management.items.destroy', $item->id) }}" method="POST" class="inline">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-xs btn-error" onclick="return confirm('Delete this item?')">
-                                <i class="fas fa-trash"></i>
+                            <button type="submit" class="btn btn-sm bg-red-100 text-red-700 hover:bg-red-200 border-none px-3 py-1.5 rounded-lg" onclick="return confirm('Delete this item?')">
+                                <i class="fas fa-trash text-xs"></i>
                             </button>
                         </form>
+                        </div>
                     </td>
                     @endif
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="{{ $isPlanner ? '10' : '9' }}" class="py-12 text-center text-gray-500">
-                        <i class="fas fa-inbox text-4xl mb-4"></i>
-                        <p>No items in this sheet.</p>
+                    <td colspan="{{ $isPlanner ? '10' : '9' }}" class="px-4 py-12 text-center text-gray-500">
+                        <i class="fas fa-inbox text-4xl mb-4 text-gray-300"></i>
+                        <p class="text-lg font-medium">No items in this sheet</p>
+                        <p class="text-sm">Add items to get started</p>
                     </td>
                 </tr>
                 @endforelse
@@ -223,39 +222,35 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Part Number *</label>
-                    <input type="text" name="part_number" id="edit_part_number" required class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <input type="text" name="part_number" id="edit_part_number" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Stock Code *</label>
-                    <input type="text" name="stock_code" id="edit_stock_code" required class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <input type="text" name="stock_code" id="edit_stock_code" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
                 <div class="col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
-                    <input type="text" name="description" id="edit_description" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <input type="text" name="description" id="edit_description" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Qty *</label>
-                    <input type="number" name="qty" id="edit_qty" required min="0" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <input type="number" name="qty" id="edit_qty" required min="0" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Stock</label>
-                    <input type="text" name="stock" id="edit_stock" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <input type="text" name="stock" id="edit_stock" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Price *</label>
-                    <input type="number" name="price" id="edit_price" required min="0" step="0.01" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">Amount *</label>
-                    <input type="number" name="amount" id="edit_amount" required min="0" step="0.01" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <input type="number" name="price" id="edit_price" required min="0" step="0.01" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">WR</label>
-                    <input type="text" name="wr" id="edit_wr" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <input type="text" name="wr" id="edit_wr" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Install</label>
-                    <select name="remarks_install" id="edit_remarks_install" class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:border-maroon outline-none">
+                    <select name="remarks_install" id="edit_remarks_install" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                         <option value="">-</option>
                         <option value="YES">YES</option>
                         <option value="NO">NO</option>
@@ -271,7 +266,7 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
 </div>
 
 <script>
-function editItem(id, partNumber, stockCode, description, qty, stock, price, amount, wr, remarksInstall) {
+function editItem(id, partNumber, stockCode, description, qty, stock, price, wr, remarksInstall) {
     document.getElementById('editItemForm').action = '/management/items/' + id;
     document.getElementById('edit_part_number').value = partNumber;
     document.getElementById('edit_stock_code').value = stockCode;
@@ -279,7 +274,6 @@ function editItem(id, partNumber, stockCode, description, qty, stock, price, amo
     document.getElementById('edit_qty').value = qty;
     document.getElementById('edit_stock').value = stock;
     document.getElementById('edit_price').value = price;
-    document.getElementById('edit_amount').value = amount;
     document.getElementById('edit_wr').value = wr;
     document.getElementById('edit_remarks_install').value = remarksInstall;
     document.getElementById('editItemModal').classList.remove('hidden');

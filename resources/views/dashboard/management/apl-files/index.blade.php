@@ -28,14 +28,14 @@
                 <i class="fas fa-chevron-right text-gray-400"></i>
             </a>
             @if(Auth::user()->role === 'planner')
-            <div class="flex gap-2 mt-4 pt-4 border-t border-gray-200">
-                <a href="{{ route('management.apl-files.edit', $file->id) }}" class="btn btn-sm btn-warning flex-1">
+            <div class="flex gap-2 mt-4 pt-4 border-t border-gray-200"> 
+                <a href="{{ route('management.apl-files.edit', $file->id) }}" class="btn btn-sm bg-yellow-100 text-yellow-700 hover:bg-yellow-200 border-none flex-1">
                     <i class="fas fa-edit mr-1"></i> Edit
                 </a>
                 <form action="{{ route('management.apl-files.destroy', $file->id) }}" method="POST" class="flex-1" onsubmit="return confirm('Delete this file?')">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-sm btn-error w-full">
+                    <button type="submit" class="btn btn-sm bg-red-100 text-red-700 hover:bg-red-200 border-none w-full">
                         <i class="fas fa-trash mr-1"></i> Delete
                     </button>
                 </form>

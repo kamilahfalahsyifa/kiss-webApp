@@ -23,7 +23,7 @@
         <div class="mb-6">
             <label class="block text-sm font-medium text-gray-700 mb-2">File Name <span class="text-red-500">*</span></label>
             <input type="text" name="name" value="{{ old('name') }}" required placeholder="e.g. APL Engine Components 2026"
-                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition">
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition">
         </div>
 
         <div class="flex gap-4">

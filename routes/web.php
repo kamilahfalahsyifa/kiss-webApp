@@ -71,7 +71,6 @@ Route::middleware(['auth', 'role:planner'])->prefix('management')->name('managem
     Route::get('/apl-files/{aplFile}/edit', [AplFileController::class, 'edit'])->name('apl-files.edit');
     Route::put('/apl-files/{aplFile}', [AplFileController::class, 'update'])->name('apl-files.update');
     Route::delete('/apl-files/{aplFile}', [AplFileController::class, 'destroy'])->name('apl-files.destroy');
-    Route::get('/apl-files/{aplFile}', [AplFileController::class, 'show'])->name('apl-files.show')->where('aplFile', '[0-9]+');
 
     // APL Sheet CRUD
     Route::post('/apl-files/{aplFile}/sheets', [AplSheetController::class, 'store'])->name('apl-files.sheets.store');

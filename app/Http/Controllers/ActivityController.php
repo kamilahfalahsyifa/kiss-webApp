@@ -14,37 +14,24 @@ class ActivityController extends Controller
     {
         $user = Auth::user();
 
-        // Mekanik sees their own activities, GL/others see all
-        if ($user->role === 'mekanik') {
-            $query = ReplacementHistory::where('user_id', Auth::id());
-        } else {
-            $query = ReplacementHistory::query();
-        }
+        $query = $user->role === 'mekanik'
+            ? ReplacementHistory::where('user_id', Auth::id())
+            : ReplacementHistory::query();
 
-        // Search by code_number, activity (notes), or component_name
-        if ($request->has('search') && $request->search != '') {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('code_number', 'like', "%{$search}%")
-                  ->orWhere('notes', 'like', "%{$search}%")
-                  ->orWhere('component_name', 'like', "%{$search}%");
-            });
-        }
+        $search = $request->get('search');
+        $query->when($search, fn($q) => $q->where(fn($q) => $q
+            ->where('code_number', 'like', "%{$search}%")
+            ->orWhere('component_name', 'like', "%{$search}%")
+            ->orWhere('hm_km', 'like', "%{$search}%")
+        ));
 
-        // Filter by category
-        if ($request->has('category') && $request->category != '') {
-            $query->where('category', $request->category);
-        }
+        $status = $request->get('status');
+        $query->when($status, fn($q) => $q->where('status', $status));
 
-        // Get distinct categories for filter dropdown
-        $categories = ReplacementHistory::whereNotNull('category')
-            ->where('category', '!=', '')
-            ->distinct()
-            ->pluck('category');
+        $statuses = ['pending', 'approved', 'rejected'];
+        $activities = $query->latest()->paginate(10)->withQueryString();
 
-        $activities = $query->latest()->paginate(10);
-
-        return view('activities.index', compact('activities', 'categories'));
+        return view('activities.index', compact('activities', 'statuses'));
     }
 
     public function create()

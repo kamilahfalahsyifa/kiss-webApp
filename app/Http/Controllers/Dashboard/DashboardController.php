@@ -76,12 +76,21 @@ class DashboardController extends Controller
         return redirect()->back()->with('success', 'Activity recorded successfully');
     }
 
-    public function mekanikHistorical()
+    public function mekanikHistorical(Request $request)
     {
-        $histories = ReplacementHistory::with(['user'])
-            ->where('status', 'approved')
-            ->latest()
-            ->paginate(10);
+        $query = ReplacementHistory::with(['user'])
+            ->where('user_id', Auth::id())
+            ->where('status', 'approved');
+
+        $search = $request->get('search');
+        $query->when($search, fn($q) => $q->where(fn($q) => $q
+            ->where('code_number', 'like', "%{$search}%")
+            ->orWhere('component_name', 'like', "%{$search}%")
+            ->orWhere('hm_km', 'like', "%{$search}%")
+            ->orWhere('notes', 'like', "%{$search}%")
+        ));
+
+        $histories = $query->latest()->paginate(10)->withQueryString();
 
         return view('dashboard.mekanik.historical', compact('histories'));
     }
@@ -198,12 +207,20 @@ class DashboardController extends Controller
         ));
     }
 
-    public function managementHistorical()
+    public function managementHistorical(Request $request)
     {
-        $histories = ReplacementHistory::with(['user'])
-            ->where('status', 'approved')
-            ->latest()
-            ->paginate(15);
+        $query = ReplacementHistory::with(['user'])
+            ->where('status', 'approved');
+
+        $search = $request->get('search');
+        $query->when($search, fn($q) => $q->where(fn($q) => $q
+            ->where('code_number', 'like', "%{$search}%")
+            ->orWhere('component_name', 'like', "%{$search}%")
+            ->orWhere('hm_km', 'like', "%{$search}%")
+            ->orWhere('notes', 'like', "%{$search}%")
+        ));
+
+        $histories = $query->latest()->paginate(15)->withQueryString();
 
         return view('dashboard.management.historical', compact('histories'));
     }

@@ -22,12 +22,12 @@ class AplItemController extends Controller
             'qty' => 'required|integer|min:0',
             'stock' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
-            'amount' => 'required|numeric|min:0',
             'wr' => 'nullable|string|max:255',
             'remarks_install' => 'nullable|string|max:255',
         ]);
 
         $validated['apl_sheet_id'] = $aplSheet->id;
+        $validated['amount'] = $validated['qty'] * $validated['price'];
         AplItem::create($validated);
 
         return redirect()->back()->with('success', 'Item created successfully');
@@ -46,11 +46,11 @@ class AplItemController extends Controller
             'qty' => 'required|integer|min:0',
             'stock' => 'nullable|string|max:255',
             'price' => 'required|numeric|min:0',
-            'amount' => 'required|numeric|min:0',
             'wr' => 'nullable|string|max:255',
             'remarks_install' => 'nullable|string|max:255',
         ]);
 
+        $validated['amount'] = $validated['qty'] * $validated['price'];
         $aplItem->update($validated);
 
         return redirect()->back()->with('success', 'Item updated successfully');

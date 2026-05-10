@@ -32,16 +32,16 @@
                         <i class="fas fa-search"></i>
                     </span>
                     <input type="text" name="search" value="{{ request('search') }}"
-                           placeholder="Search by Code Number, Activity, or Component..."
+                           placeholder="Search by Code Number, HM Unit, or Component..."
                            class="w-full pl-10 pr-4 py-2.5 text-sm rounded-xl border border-gray-300 bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition-all shadow-sm">
                 </div>
             </div>
             <div class="w-full md:w-52">
-                <select name="category" class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-300 bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition-all shadow-sm">
-                    <option value="">All Categories</option>
-                    @foreach($categories as $cat)
-                        <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>
-                            {{ $cat }}
+                <select name="status" class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-300 bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition-all shadow-sm">
+                    <option value="">All Status</option>
+                    @foreach($statuses as $s)
+                        <option value="{{ $s }}" {{ request('status') == $s ? 'selected' : '' }}>
+                            {{ ucfirst($s) }}
                         </option>
                     @endforeach
                 </select>

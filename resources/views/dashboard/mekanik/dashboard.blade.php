@@ -10,7 +10,7 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
 @section('content')
 <!-- Stats Cards -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    <x-stat-card label="Total Unit Handled" :value="$totalUnitHandled" icon="fas fa-truck" iconColor="text-maroon" />
+    <x-stat-card label="Total Unit" :value="$totalUnitHandled" icon="fas fa-truck" iconColor="text-maroon" />
     <x-stat-card label="Total Replacement" :value="$totalReplacement" icon="fas fa-clock" iconColor="text-warning" />
     <x-stat-card label="Replacement Today" :value="$totalReplacementToday" icon="fas fa-check" iconColor="text-success" />
 </div>
