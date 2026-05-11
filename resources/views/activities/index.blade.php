@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
-@section('page_title', 'Input Activity')
-@section('page_subtitle', 'Manage replacement activities')
+@section('page_title', 'Approval')
+@section('page_subtitle', 'Review and approve replacement activity submissions')
 
 @section('content')
 @if(session('success'))
@@ -11,17 +11,7 @@
 </div>
 @endif
 
-<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-    <div>
-        <h2 class="text-2xl font-bold text-gray-800">Activity Records</h2>
-        <p class="text-gray-500 text-sm mt-1">Manage your replacement activity data</p>
-    </div>
-    <a href="{{ route('mekanik.activities.create') }}"
-       class="btn bg-maroon text-white hover:bg-maroon-dark px-5 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium shadow-sm transition-all">
-        <i class="fas fa-plus"></i>
-        Input Data
-    </a>
-</div>
+
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
     <div class="p-5 border-b border-gray-200 bg-gray-50/50">
