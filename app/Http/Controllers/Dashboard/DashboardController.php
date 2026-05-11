@@ -81,7 +81,6 @@ class DashboardController extends Controller
     public function mekanikHistorical(Request $request)
     {
         $query = ReplacementHistory::with(['user'])
-            ->where('user_id', Auth::id())
             ->where('status', 'approved');
 
         $search = $request->get('search');

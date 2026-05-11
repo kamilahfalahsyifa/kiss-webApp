@@ -1,15 +1,9 @@
 @extends('layouts.dashboard')
 
-@section('page_title', 'Historical')
+@section('page_title', 'Historical Replacements')
 @section('page_subtitle', 'Your replacement history records')
 
 @section('content')
-<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-    <div>
-        <h2 class="text-2xl font-bold text-gray-800">Replacement History</h2>
-        <p class="text-gray-500 text-sm mt-1">Your approved replacement records</p>
-    </div>
-</div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
     <div class="p-5 border-b border-gray-200 bg-gray-50/50">
