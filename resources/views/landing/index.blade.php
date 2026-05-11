@@ -20,7 +20,7 @@
             <a href="#cara-kerja" class="text-gray-600 hover:text-maroon font-medium transition">Cara Kerja</a>
         </div>
 
-        <div class="flex-none">
+        <div class="flex-none pl-10">
             <a href="{{ route('login') }}" class="btn bg-maroon text-white border-none hover:bg-maroon-dark">
                 LOGIN
             </a>
