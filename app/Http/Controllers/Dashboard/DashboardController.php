@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Exports\ReplacementHistoryExport;
 use App\Models\ReplacementHistory;
 use App\Models\Unit;
 use App\Models\Component;
 use App\Models\AplItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DashboardController extends Controller
 {
@@ -223,6 +225,20 @@ class DashboardController extends Controller
         $histories = $query->latest()->paginate(15)->withQueryString();
 
         return view('dashboard.management.historical', compact('histories'));
+    }
+
+    public function managementHistoricalExport(Request $request)
+    {
+        if (Auth::user()->role !== 'planner') {
+            abort(403, 'Unauthorized');
+        }
+
+        $search = $request->get('search');
+
+        return Excel::download(
+            new ReplacementHistoryExport($search),
+            'historical-replacement-' . now()->format('Y-m-d') . '.xlsx'
+        );
     }
 
     public function managementAplFiles()

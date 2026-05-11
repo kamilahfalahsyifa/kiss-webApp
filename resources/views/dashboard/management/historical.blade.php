@@ -4,12 +4,7 @@
 @section('page_subtitle', 'All replacement history records')
 
 @section('content')
-<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
-    <div>
-        <h2 class="text-2xl font-bold text-gray-800">All Replacement History</h2>
-        <p class="text-gray-500 text-sm mt-1">All approved replacement records</p>
-    </div>
-</div>
+
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
     <div class="p-5 border-b border-gray-200 bg-gray-50/50">
@@ -31,6 +26,12 @@
                 <a href="{{ route('management.historical') }}" class="btn bg-white border border-gray-300 text-gray-600 hover:bg-gray-50 hover:text-gray-800 px-4 py-2.5 rounded-xl transition-all shadow-sm flex items-center justify-center">
                     <i class="fas fa-sync-alt"></i>
                 </a>
+                @if(Auth::user()->role === 'planner')
+                <a href="{{ route('management.historical.export', request()->only('search')) }}"
+                   class="btn bg-green-600 text-white hover:bg-green-700 px-4 py-2.5 rounded-xl text-sm font-medium shadow-sm transition-all flex items-center gap-2">
+                    <i class="fas fa-file-excel"></i> Download Excel
+                </a>
+                @endif
             </div>
         </form>
     </div>

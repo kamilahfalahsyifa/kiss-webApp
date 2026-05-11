@@ -71,9 +71,10 @@ Route::middleware(['auth', 'role:gl,tere,planner'])->prefix('management')->name(
 
 // PLANNER only routes - outside of management group to avoid middleware accumulation
 Route::middleware(['auth', 'role:planner'])->prefix('management')->name('management.')->group(function () {
+    // IMPORTANT: specific routes must come BEFORE dynamic {aplFile} routes
     Route::get('/apl-files/create', [AplFileController::class, 'create'])->name('apl-files.create');
-    Route::post('/apl-files', [AplFileController::class, 'store'])->name('apl-files.store');
     Route::get('/apl-files/{aplFile}/edit', [AplFileController::class, 'edit'])->name('apl-files.edit');
+    Route::post('/apl-files', [AplFileController::class, 'store'])->name('apl-files.store');
     Route::put('/apl-files/{aplFile}', [AplFileController::class, 'update'])->name('apl-files.update');
     Route::delete('/apl-files/{aplFile}', [AplFileController::class, 'destroy'])->name('apl-files.destroy');
 
@@ -86,6 +87,9 @@ Route::middleware(['auth', 'role:planner'])->prefix('management')->name('managem
     Route::post('/sheets/{aplSheet}/items', [AplItemController::class, 'store'])->name('sheets.items.store');
     Route::put('/items/{aplItem}', [AplItemController::class, 'update'])->name('items.update');
     Route::delete('/items/{aplItem}', [AplItemController::class, 'destroy'])->name('items.destroy');
+
+    // Historical Export for Planner
+    Route::get('/historical/export', [DashboardController::class, 'managementHistoricalExport'])->name('historical.export');
 });
 
 // Profile routes
