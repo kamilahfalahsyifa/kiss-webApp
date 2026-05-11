@@ -62,6 +62,11 @@ Route::middleware(['auth', 'role:gl,tere,planner'])->prefix('management')->name(
         Route::post('/activities/{activity}/approve', [ActivityController::class, 'approve'])->name('activities.approve');
         Route::post('/activities/{activity}/reject', [ActivityController::class, 'reject'])->name('activities.reject');
     });
+
+    // TERE User Management Routes
+    Route::middleware(['role:tere'])->group(function () {
+        Route::resource('users', \App\Http\Controllers\UserController::class);
+    });
 });
 
 // PLANNER only routes - outside of management group to avoid middleware accumulation

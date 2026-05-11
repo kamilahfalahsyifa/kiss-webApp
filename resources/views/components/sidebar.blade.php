@@ -22,6 +22,11 @@ if ($role === 'gl') {
     array_splice($managementMenu, 1, 0, [['name' => 'Approval', 'icon' => 'fa-check-circle', 'route' => 'management.activities.index']]);
 }
 
+// Add User Management only for TERE role
+if ($role === 'tere') {
+    $managementMenu[] = ['name' => 'User Management', 'icon' => 'fa-users', 'route' => 'management.users.index'];
+}
+
 $menu = $role === 'mekanik' ? $mekanikMenu : $managementMenu;
 @endphp
 
