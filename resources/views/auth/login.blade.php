@@ -6,7 +6,6 @@
     <div class="hidden lg:flex lg:w-1/2 bg-pink-bg flex-col items-center justify-center p-12">
         <div class="text-center">
                 <img src="{{ asset('images/logo-kiss-scan.png') }}" alt="Logo KISS" class="w-50 h-50 object-contain">
-            <p class="text-3xl text-maroon/70">Keep It Simple System</p>
         </div>
     </div>
 
