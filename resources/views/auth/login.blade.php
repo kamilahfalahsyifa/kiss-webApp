@@ -57,53 +57,15 @@
                         @enderror
                     </div>
 
-                    <div class="flex items-center justify-between mb-6">
-                        <label class="flex items-center">
-                            <input type="checkbox" name="remember" class="w-4 h-4 text-maroon border-gray-300 rounded focus:ring-maroon">
-                            <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                        </label>
-                        @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-sm text-maroon hover:underline">Forgot Password?</a>
-                        @endif
-                    </div>
 
                     <button type="submit" class="w-full bg-maroon text-white py-3 rounded-xl font-semibold hover:bg-maroon-dark transition shadow-md">
                         Log In
                     </button>
                 </form>
 
-                <!-- Divider -->
-                <div class="flex items-center my-8">
-                    <div class="flex-1 border-t border-gray-200"></div>
-                    <span class="px-4 text-sm text-gray-400">or</span>
-                    <div class="flex-1 border-t border-gray-200"></div>
-                </div>
-
-                <!-- Social Login -->
-                <div class="grid grid-cols-3 gap-3">
-                    <button class="flex items-center justify-center py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition">
-                        <i class="fab fa-google text-red-500 text-xl"></i>
-                    </button>
-                    <button class="flex items-center justify-center py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition">
-                        <i class="fab fa-facebook text-blue-600 text-xl"></i>
-                    </button>
-                    <button class="flex items-center justify-center py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition">
-                        <i class="fab fa-apple text-gray-800 text-xl"></i>
-                    </button>
-                </div>
-
-                <!-- Mobile Access -->
-                <div class="mt-6 text-center">
-                    <button class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-maroon transition">
-                        <i class="fas fa-mobile-alt"></i>
-                        Access via Mobile
-                    </button>
-                </div>
+                
             </div>
 
-            <p class="text-center text-sm text-gray-500 mt-6">
-                Don't have an account? <a href="{{ route('register') }}" class="text-maroon font-medium hover:underline">Register</a>
-            </p>
         </div>
     </div>
 </div>
