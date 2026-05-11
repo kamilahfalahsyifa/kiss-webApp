@@ -52,9 +52,8 @@ Route::middleware(['auth', 'role:gl,tere,planner'])->prefix('management')->name(
     Route::get('/historical', [DashboardController::class, 'managementHistorical'])->name('historical');
     Route::get('/profile', [DashboardController::class, 'managementProfile'])->name('profile');
 
-    // APL Files - View Only for GL/TERE, Full Access for PLANNER
+    // APL Files - GL/TERE view only, PLANNER uses separate routes below
     Route::get('/apl-files', [AplFileController::class, 'index'])->name('apl-files');
-    Route::get('/apl-files/{aplFile}', [AplFileController::class, 'show'])->name('apl-files.show');
 
     // GL Approval Routes
     Route::middleware(['role:gl'])->group(function () {
@@ -69,14 +68,19 @@ Route::middleware(['auth', 'role:gl,tere,planner'])->prefix('management')->name(
     });
 });
 
-// PLANNER only routes - outside of management group to avoid middleware accumulation
+// PLANNER only routes - specific routes BEFORE dynamic {aplFile} route
 Route::middleware(['auth', 'role:planner'])->prefix('management')->name('management.')->group(function () {
-    // IMPORTANT: specific routes must come BEFORE dynamic {aplFile} routes
+    // APL Files - CREATE first (static route before dynamic)
     Route::get('/apl-files/create', [AplFileController::class, 'create'])->name('apl-files.create');
-    Route::get('/apl-files/{aplFile}/edit', [AplFileController::class, 'edit'])->name('apl-files.edit');
     Route::post('/apl-files', [AplFileController::class, 'store'])->name('apl-files.store');
+
+    // APL Files - EDIT (static route before dynamic)
+    Route::get('/apl-files/{aplFile}/edit', [AplFileController::class, 'edit'])->name('apl-files.edit');
     Route::put('/apl-files/{aplFile}', [AplFileController::class, 'update'])->name('apl-files.update');
     Route::delete('/apl-files/{aplFile}', [AplFileController::class, 'destroy'])->name('apl-files.destroy');
+
+    // APL Files - SHOW (dynamic route AFTER static routes are defined)
+    Route::get('/apl-files/{aplFile}', [AplFileController::class, 'show'])->name('apl-files.show');
 
     // APL Sheet CRUD
     Route::post('/apl-files/{aplFile}/sheets', [AplSheetController::class, 'store'])->name('apl-files.sheets.store');
