@@ -11,7 +11,17 @@
 </div>
 @endif
 
-
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+    <div>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Activity Management</h2>
+        <p class="text-gray-500 text-xs sm:text-sm mt-1">Manage all replacement activities</p>
+    </div>
+    <a href="{{ route('mekanik.activities.create') }}"
+       class="btn bg-maroon text-white hover:bg-maroon-dark px-4 sm:px-5 py-2.5 rounded-xl flex items-center justify-center gap-2 text-sm font-medium shadow-sm transition-all w-full sm:w-auto">
+        <i class="fas fa-user-plus"></i>
+        Input Activity
+    </a>
+</div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
     <div class="p-5 border-b border-gray-200 bg-gray-50/50">
