@@ -54,14 +54,14 @@ $roleLabels = [
         </a>
 
         @if($permissions['canAccessHistory'] ?? true)
-        <a href="{{ route('activity-replacements.index') }}" class="{{ request()->routeIs('activity-replacements.index') || request()->routeIs('activity-replacements.edit') ? 'active' : '' }} flex flex-col items-center justify-center py-2 {{ request()->routeIs('activity-replacements.index') || request()->routeIs('activity-replacements.edit') ? 'text-primary' : 'text-gray-500' }}">
+        <a href="{{ route('mekanik.historical') }}" class="{{ request()->routeIs('mekanik.historical') || request()->routeIs('management.historical') ? 'active' : '' }} flex flex-col items-center justify-center py-2 {{ request()->routeIs('mekanik.historical') || request()->routeIs('management.historical') ? 'text-primary' : 'text-gray-500' }}">
             <i class="fas fa-list text-xl"></i>
             <span class="btm-nav-label text-xs mt-1">History</span>
         </a>
         @endif
 
         @if($permissions['canAccessInputActivity'] ?? false)
-        <a href="{{ route('activity-replacements.create') }}" class="{{ request()->routeIs('activity-replacements.create') || request()->routeIs('activity-replacements.store') ? 'active' : '' }} flex flex-col items-center justify-center py-2 {{ request()->routeIs('activity-replacements.create') || request()->routeIs('activity-replacements.store') ? 'text-primary' : 'text-gray-500' }}">
+        <a href="{{ route('mekanik.input') }}" class="{{ request()->routeIs('mekanik.input') || request()->routeIs('mekanik.input-data') ? 'active' : '' }} flex flex-col items-center justify-center py-2 {{ request()->routeIs('mekanik.input') || request()->routeIs('mekanik.input-data') ? 'text-primary' : 'text-gray-500' }}">
             <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center -mt-6 shadow-lg">
                 <i class="fas fa-plus text-white text-lg"></i>
             </div>
@@ -70,7 +70,7 @@ $roleLabels = [
         @endif
 
         @if($permissions['canAccessAplComponents'] ?? false)
-        <a href="{{ route('apl-components.index') }}" class="{{ request()->routeIs('apl-components.index') || request()->routeIs('apl-components.create') || request()->routeIs('apl-components.show') || request()->routeIs('apl-components.edit') ? 'active' : '' }} flex flex-col items-center justify-center py-2 {{ request()->routeIs('apl-components.index') || request()->routeIs('apl-components.create') || request()->routeIs('apl-components.show') || request()->routeIs('apl-components.edit') ? 'text-primary' : 'text-gray-500' }}">
+        <a href="{{ route('management.apl-files') }}" class="{{ request()->routeIs('management.apl-files') || request()->routeIs('management.apl-files.*') ? 'active' : '' }} flex flex-col items-center justify-center py-2 {{ request()->routeIs('management.apl-files') || request()->routeIs('management.apl-files.*') ? 'text-primary' : 'text-gray-500' }}">
             <i class="fas fa-folder text-xl"></i>
             <span class="btm-nav-label text-xs mt-1">APL</span>
         </a>
