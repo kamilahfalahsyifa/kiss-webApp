@@ -54,14 +54,14 @@ class ActivityController extends Controller
 
         if ($request->hasFile('image')) {
 
-    $image = $request->file('image');
+            $image = $request->file('image');
 
-    $imageName = time() . '_' . $image->getClientOriginalName();
+            $imageName = time() . '_' . $image->getClientOriginalName();
 
-    $image->move(public_path('images/activities'), $imageName);
+            $image->move(public_path('images/activities'), $imageName);
 
-    $data['image'] = 'images/activities/' . $imageName;
-}
+            $data['image'] = 'images/activities/' . $imageName;
+        }
 
         $validated['user_id'] = Auth::id();
 
@@ -100,14 +100,14 @@ class ActivityController extends Controller
 
         if ($request->hasFile('image')) {
 
-    $image = $request->file('image');
+            $image = $request->file('image');
 
-    $imageName = time() . '_' . $image->getClientOriginalName();
+            $imageName = time() . '_' . $image->getClientOriginalName();
 
-    $image->move(public_path('images/activities'), $imageName);
+            $image->move(public_path('images/activities'), $imageName);
 
-    $data['image'] = 'images/activities/' . $imageName;
-}
+            $data['image'] = 'images/activities/' . $imageName;
+        }
 
         $activity->update($validated);
 
