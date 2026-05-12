@@ -73,7 +73,7 @@
                 @if($activity->image)
                 <div class="mt-3">
                     <p class="text-sm text-gray-500 mb-2">Current Image:</p>
-                    <img src="{{ asset('storage/' . $activity->image) }}" alt="Current Image"
+                    <img src="{{ asset($activity->image) }}" alt="Current Image"
                          class="w-32 h-32 object-cover rounded-lg border border-gray-200">
                 </div>
                 @endif
