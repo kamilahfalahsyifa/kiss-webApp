@@ -52,8 +52,9 @@ Route::middleware(['auth', 'role:gl,tere,planner'])->prefix('management')->name(
     Route::get('/historical', [DashboardController::class, 'managementHistorical'])->name('historical');
     Route::get('/profile', [DashboardController::class, 'managementProfile'])->name('profile');
 
-    // APL Files - GL/TERE view only, PLANNER uses separate routes below
+    // APL Files - View for GL/TERE/PLANNER, CRUD for PLANNER
     Route::get('/apl-files', [AplFileController::class, 'index'])->name('apl-files');
+    Route::get('/apl-files/{aplFile}', [AplFileController::class, 'show'])->name('apl-files.show');
 
     // GL Approval Routes
     Route::middleware(['role:gl'])->group(function () {
@@ -78,9 +79,6 @@ Route::middleware(['auth', 'role:planner'])->prefix('management')->name('managem
     Route::get('/apl-files/{aplFile}/edit', [AplFileController::class, 'edit'])->name('apl-files.edit');
     Route::put('/apl-files/{aplFile}', [AplFileController::class, 'update'])->name('apl-files.update');
     Route::delete('/apl-files/{aplFile}', [AplFileController::class, 'destroy'])->name('apl-files.destroy');
-
-    // APL Files - SHOW (dynamic route AFTER static routes are defined)
-    Route::get('/apl-files/{aplFile}', [AplFileController::class, 'show'])->name('apl-files.show');
 
     // APL Sheet CRUD
     Route::post('/apl-files/{aplFile}/sheets', [AplSheetController::class, 'store'])->name('apl-files.sheets.store');

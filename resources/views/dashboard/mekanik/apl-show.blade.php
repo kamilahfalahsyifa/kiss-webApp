@@ -75,7 +75,8 @@ if (!$currentSheet) {
                     <td class="px-4 py-3 text-right font-semibold text-maroon">Rp {{ number_format($item->amount, 0, ',', '.') }}</td>
                     <td class="px-4 py-3">{{ $item->wr ?? '-' }}</td>
                     <td class="px-4 py-3">
-                        <span class="badge {{ $item->remarks_install === 'YES' ? 'badge-success' : 'badge-error' }}">
+                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium {{ $item->remarks_install === 'YES' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+                            
                             {{ $item->remarks_install ?? '-' }}
                         </span>
                     </td>
