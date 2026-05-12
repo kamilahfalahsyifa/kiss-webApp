@@ -53,8 +53,15 @@ class ActivityController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('replacement-images', 'public');
-        }
+
+    $image = $request->file('image');
+
+    $imageName = time() . '_' . $image->getClientOriginalName();
+
+    $image->move(public_path('images/activities'), $imageName);
+
+    $data['image'] = 'images/activities/' . $imageName;
+}
 
         $validated['user_id'] = Auth::id();
 
@@ -92,8 +99,15 @@ class ActivityController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('replacement-images', 'public');
-        }
+
+    $image = $request->file('image');
+
+    $imageName = time() . '_' . $image->getClientOriginalName();
+
+    $image->move(public_path('images/activities'), $imageName);
+
+    $data['image'] = 'images/activities/' . $imageName;
+}
 
         $activity->update($validated);
 
