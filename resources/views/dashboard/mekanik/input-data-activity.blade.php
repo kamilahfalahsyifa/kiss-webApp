@@ -4,11 +4,11 @@
 @section('page_subtitle', 'Additional data input form')
 
 @section('content')
-<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-    <h3 class="text-lg font-bold text-gray-800 mb-6">Input Data Activity</h3>
+<div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-100">
+    <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-4 sm:mb-6">Input Data Activity</h3>
 
     @if(session('success'))
-    <div class="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700">
+    <div class="mb-4 sm:mb-6 p-4 bg-green-50 border border-green-200 rounded-xl text-green-700 text-sm sm:text-base">
         <i class="fas fa-check-circle mr-2"></i> {{ session('success') }}
     </div>
     @endif
@@ -16,7 +16,7 @@
     <form method="POST" action="{{ route('mekanik.store') }}" enctype="multipart/form-data">
         @csrf
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">Unit</label>
                 <select name="unit_id" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition">

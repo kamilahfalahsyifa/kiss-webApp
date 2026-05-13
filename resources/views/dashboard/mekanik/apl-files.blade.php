@@ -4,12 +4,12 @@
 @section('page_subtitle', 'Master file list')
 
 @section('content')
-<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-    <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-bold text-gray-800">APL Files</h3>
+<div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-100">
+    <div class="flex items-center justify-between mb-4 sm:mb-6">
+        <h3 class="text-base sm:text-lg font-bold text-gray-800">APL Files</h3>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         @forelse($aplFiles as $file)
         <div class="bg-pink-bg rounded-xl p-6 border border-gray-200 hover:border-maroon transition group">
             <a href="{{ route('mekanik.apl-files.show', $file->id) }}" class="flex items-center gap-4">

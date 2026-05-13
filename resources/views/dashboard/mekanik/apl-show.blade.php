@@ -10,9 +10,9 @@ $activeSheet = request()->get('sheet');
 @section('content')
 <!-- Horizontal Scrollable Sheet Tabs -->
 @if($aplFile->sheets->count() > 0)
-<div class="bg-white rounded-2xl shadow-md p-4 border border-gray-100 mb-6">
-    <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-2">
-        <span class="text-sm font-semibold text-gray-500 mr-4">Sheets:</span>
+<div class="bg-white rounded-2xl shadow-md p-3 sm:p-4 border border-gray-100 mb-4 sm:mb-6">
+    <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap pb-1 sm:pb-2">
+        <span class="text-xs sm:text-sm font-semibold text-gray-500 mr-2 sm:mr-4 flex-shrink-0">Sheets:</span>
         @foreach($aplFile->sheets as $sheet)
         <a href="{{ route('mekanik.apl-files.show', $aplFile->id) }}?sheet={{ $sheet->id }}"
            class="px-4 py-2 rounded-lg text-sm font-medium transition {{ $activeSheet == $sheet->id || ($activeSheet == null && $loop->first) ? 'bg-maroon text-white' : 'bg-gray-100 text-gray-600 hover:bg-pink-bg' }}">
@@ -33,9 +33,9 @@ if (!$currentSheet) {
 }
 @endphp
 
-<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-    <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-bold text-gray-800">
+<div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-100">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 sm:mb-6">
+        <h3 class="text-base sm:text-lg font-bold text-gray-800">
             {{ $currentSheet->name ?? 'No Sheet' }}
             <span class="text-sm font-normal text-gray-500 ml-2">
                 @if($currentSheet)
@@ -47,7 +47,7 @@ if (!$currentSheet) {
         </h3>
     </div>
 
-    <div class="overflow-x-auto">
+    <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
         <table class="table w-full">
             <thead>
                 <tr class="border-b border-gray-200 bg-gray-50">
