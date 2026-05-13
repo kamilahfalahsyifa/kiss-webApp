@@ -53,8 +53,16 @@ class ActivityController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('activities', 'public');
-            $validated['image'] = $imagePath;
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/activities');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $file->move($destinationPath, $filename);
+            $validated['image'] = 'uploads/activities/' . $filename;
         }
 
         $validated['user_id'] = Auth::id();
@@ -93,8 +101,21 @@ class ActivityController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('activities', 'public');
-            $validated['image'] = $imagePath;
+            // Delete old image if exists
+            if ($activity->image && file_exists(public_path($activity->image))) {
+                unlink(public_path($activity->image));
+            }
+
+            $file = $request->file('image');
+            $filename = time() . '_' . Str::random(8) . '.' . $file->getClientOriginalExtension();
+            $destinationPath = public_path('uploads/activities');
+
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+
+            $file->move($destinationPath, $filename);
+            $validated['image'] = 'uploads/activities/' . $filename;
         }
 
         $activity->update($validated);
