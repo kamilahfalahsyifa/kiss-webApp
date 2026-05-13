@@ -100,9 +100,9 @@
                     </td>
                     <td class="px-4 py-4">
                         @if($item->image)
-                        <button type="button" onclick="showImage('{{ asset('storage/' . $item->image) }}')"
+                        <button type="button" onclick="showImage('{{ asset($item->image) }}')"
                                 class="text-maroon hover:underline text-sm flex items-center gap-1">
-                            <img src="{{ asset('storage/' . $item->image) }}"
+                            <img src="{{ asset($item->image) }}"
                                  alt="Image" class="w-12 h-12 object-cover rounded-lg border border-gray-200">
                         </button>
                         @else
