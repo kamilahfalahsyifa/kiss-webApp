@@ -16,9 +16,9 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
 </div>
 
 <!-- Recent Activity -->
-<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-    <h3 class="text-lg font-bold text-gray-800 mb-4">Recent Replacement Histories</h3>
-    <div class="overflow-x-auto">
+<div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-100">
+    <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-4">Recent Replacement Histories</h3>
+    <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
         <table class="table w-full">
             <thead>
                 <tr class="border-b border-gray-200">

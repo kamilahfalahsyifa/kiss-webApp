@@ -18,13 +18,13 @@
 </div>
 @endif
 
-<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
     <div>
-        <h2 class="text-2xl font-bold text-gray-800">User Management</h2>
-        <p class="text-gray-500 text-sm mt-1">Manage all system users</p>
+        <h2 class="text-xl sm:text-2xl font-bold text-gray-800">User Management</h2>
+        <p class="text-gray-500 text-xs sm:text-sm mt-1">Manage all system users</p>
     </div>
     <a href="{{ route('management.users.create') }}"
-       class="btn bg-maroon text-white hover:bg-maroon-dark px-5 py-2.5 rounded-xl flex items-center gap-2 text-sm font-medium shadow-sm transition-all">
+       class="btn bg-maroon text-white hover:bg-maroon-dark px-4 sm:px-5 py-2.5 rounded-xl flex items-center justify-center gap-2 text-sm font-medium shadow-sm transition-all w-full sm:w-auto">
         <i class="fas fa-user-plus"></i>
         Add User
     </a>

@@ -10,11 +10,11 @@ $isPlanner = Auth::user()->role === 'planner';
 
 @section('content')
 <!-- Horizontal Scrollable Sheet Tabs -->
-<div class="bg-white/80 backdrop-blur rounded-2xl shadow-sm p-4 border border-gray-100 mb-6">
-    <div class="flex items-center justify-between">
-        
+<div class="bg-white/80 backdrop-blur rounded-2xl shadow-sm p-3 sm:p-4 border border-gray-100 mb-4 sm:mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+
         <div class="flex items-center gap-2 overflow-x-auto whitespace-nowrap flex-1">
-            <span class="text-sm font-semibold text-gray-400 mr-3">Sheets</span>
+            <span class="text-xs sm:text-sm font-semibold text-gray-400 mr-2 sm:mr-3 flex-shrink-0">Sheets</span>
 
             @foreach($aplFile->sheets as $sheet)
             <a href="{{ route('management.apl-files.show', $aplFile->id) }}?sheet={{ $sheet->id }}"
@@ -51,8 +51,8 @@ $isPlanner = Auth::user()->role === 'planner';
 
 <!-- Add Sheet Modal -->
 @if($isPlanner)
-<div id="addSheetModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-    <div class="bg-white rounded-xl p-6 w-full max-w-md">
+<div id="addSheetModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl p-4 sm:p-6 w-full max-w-md">
         <h3 class="text-lg font-bold mb-4">Add New Sheet</h3>
         <form action="{{ route('management.apl-files.sheets.store', $aplFile->id) }}" method="POST">
             @csrf
@@ -75,9 +75,9 @@ $isPlanner = Auth::user()->role === 'planner';
 $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->sheets->first();
 @endphp
 
-<div class="bg-white rounded-2xl shadow-sm p-6 border border-gray-100">
-    <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-bold text-gray-800">
+<div class="bg-white rounded-2xl shadow-sm p-4 sm:p-6 border border-gray-100">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <h3 class="text-base sm:text-lg font-bold text-gray-800">
             {{ $currentSheet->name ?? 'No Sheet' }}
             <span class="text-sm font-normal text-gray-500 ml-2">
                 @if($currentSheet && $currentSheet->items)
@@ -88,7 +88,7 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
             </span>
         </h3>
         @if($isPlanner && $currentSheet)
-        <button type="button" onclick="document.getElementById('addItemModal').classList.remove('hidden')" class="btn btn-sm bg-maroon text-white rounded-xl shadow hover:scale-105 transition">
+        <button type="button" onclick="document.getElementById('addItemModal').classList.remove('hidden')" class="btn btn-sm bg-maroon text-white rounded-xl shadow hover:scale-105 transition w-full sm:w-auto">
             <i class="fas fa-plus mr-1"></i> Add Item
         </button>
         @endif
@@ -96,12 +96,12 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
 
     <!-- Add Item Modal -->
     @if($isPlanner && $currentSheet)
-    <div id="addItemModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-        <div class="bg-white rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+    <div id="addItemModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
             <h3 class="text-lg font-bold mb-4">Add New Item</h3>
             <form action="{{ route('management.sheets.items.store', $currentSheet->id) }}" method="POST">
                 @csrf
-                <div class="grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Part Number *</label>
                         <input type="text" name="part_number" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
@@ -110,7 +110,7 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
                         <label class="block text-sm font-medium text-gray-700 mb-2">Stock Code *</label>
                         <input type="text" name="stock_code" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
-                    <div class="col-span-2">
+                    <div class="col-span-1 sm:col-span-2">
                         <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
                         <input type="text" name="description" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                     </div>
@@ -213,13 +213,13 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
 
 <!-- Edit Item Modal -->
 @if($isPlanner)
-<div id="editItemModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
-    <div class="bg-white rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+<div id="editItemModal" class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl p-4 sm:p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <h3 class="text-lg font-bold mb-4">Edit Item</h3>
         <form id="editItemForm" method="POST">
             @csrf
             @method('PUT')
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Part Number *</label>
                     <input type="text" name="part_number" id="edit_part_number" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
@@ -228,7 +228,7 @@ $currentSheet = $activeSheet ? $aplFile->sheets->find($activeSheet) : $aplFile->
                     <label class="block text-sm font-medium text-gray-700 mb-2">Stock Code *</label>
                     <input type="text" name="stock_code" id="edit_stock_code" required class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>
-                <div class="col-span-2">
+                <div class="col-span-1 sm:col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Description</label>
                     <input type="text" name="description" id="edit_description" class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none">
                 </div>

@@ -4,15 +4,15 @@
 @section('page_subtitle', 'Create a new user')
 
 @section('content')
-<div class="max-w-2xl mx-auto">
-    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
-        <div class="flex items-center gap-3 mb-6">
-            <a href="{{ route('management.users.index') }}" class="btn btn-ghost btn-sm px-3 py-2">
+<div class="max-w-full sm:max-w-2xl mx-auto">
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6">
+        <div class="flex items-center gap-3 mb-4 sm:mb-6">
+            <a href="{{ route('management.users.index') }}" class="btn btn-ghost btn-sm px-2 sm:px-3 py-2">
                 <i class="fas fa-arrow-left"></i>
             </a>
             <div>
-                <h2 class="text-xl font-bold text-gray-800">Add New User</h2>
-                <p class="text-gray-500 text-sm">Create a new system user account</p>
+                <h2 class="text-lg sm:text-xl font-bold text-gray-800">Add New User</h2>
+                <p class="text-gray-500 text-xs sm:text-sm">Create a new system user account</p>
             </div>
         </div>
 
@@ -70,11 +70,11 @@
                 </div>
             </div>
 
-            <div class="flex gap-3 mt-8">
-                <a href="{{ route('management.users.index') }}" class="btn btn-ghost flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl py-3 text-sm font-medium transition-colors">
+            <div class="flex flex-col sm:flex-row gap-3 mt-6 sm:mt-8">
+                <a href="{{ route('management.users.index') }}" class="btn btn-ghost flex-1 border border-gray-300 text-gray-700 hover:bg-gray-50 rounded-xl py-2.5 sm:py-3 text-sm font-medium transition-colors">
                     Cancel
                 </a>
-                <button type="submit" class="btn bg-maroon text-white hover:bg-maroon-dark flex-1 rounded-xl py-3 text-sm font-medium transition-colors shadow-sm">
+                <button type="submit" class="btn bg-maroon text-white hover:bg-maroon-dark flex-1 rounded-xl py-2.5 sm:py-3 text-sm font-medium transition-colors shadow-sm">
                     <i class="fas fa-save mr-2"></i> Save User
                 </button>
             </div>

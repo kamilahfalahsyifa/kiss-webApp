@@ -7,7 +7,7 @@
 
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-    <div class="p-5 border-b border-gray-200 bg-gray-50/50">
+    <div class="p-4 sm:p-5 border-b border-gray-200 bg-gray-50/50">
         <form method="GET" action="{{ route('management.historical') }}" class="flex flex-col md:flex-row gap-3">
             <div class="flex-1">
                 <div class="relative">
@@ -36,7 +36,7 @@
         </form>
     </div>
 
-    <div class="overflow-x-auto p-5">
+    <div class="overflow-x-auto p-4 sm:p-5 -mx-4 sm:mx-0">
         <table class="table w-full">
             <thead class="bg-gray-50">
                 <tr>

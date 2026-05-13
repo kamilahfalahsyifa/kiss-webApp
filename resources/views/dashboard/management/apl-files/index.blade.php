@@ -4,17 +4,17 @@
 @section('page_subtitle', 'Master file list')
 
 @section('content')
-<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-    <div class="flex items-center justify-between mb-6">
-        <h3 class="text-lg font-bold text-gray-800">APL Files</h3>
+<div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-100">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <h3 class="text-base sm:text-lg font-bold text-gray-800">APL Files</h3>
         @if(Auth::user()->role === 'planner')
-        <a href="{{ route('management.apl-files.create') }}" class="btn bg-maroon text-white hover:bg-maroon-dark px-4 py-2.5 rounded-xl text-sm font-medium">
+        <a href="{{ route('management.apl-files.create') }}" class="btn bg-maroon text-white hover:bg-maroon-dark px-4 py-2 rounded-xl text-sm font-medium w-full sm:w-auto text-center">
             <i class="fas fa-plus mr-2"></i> Create New
         </a>
         @endif
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         @forelse($aplFiles as $file)
         <div class="bg-pink-bg rounded-xl p-6 border border-gray-200 hover:border-maroon transition group">
             <a href="{{ route('management.apl-files.show', $file->id) }}" class="flex items-center gap-4">
