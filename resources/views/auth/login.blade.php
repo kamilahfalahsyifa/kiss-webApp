@@ -10,19 +10,19 @@
     </div>
 
     <!-- RIGHT SIDE - White Background with Login Form -->
-    <div class="w-full lg:w-1/2 bg-white flex items-center justify-center p-8">
+    <div class="w-full lg:w-1/2 bg-white flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div class="w-full max-w-md">
             <!-- Mobile Logo -->
-            <div class="lg:hidden text-center mb-8">
-                <div class="w-20 h-20 bg-maroon rounded-2xl flex items-center justify-center mx-auto mb-4">
-                    <i class="fas fa-qrcode text-white text-3xl"></i>
+            <div class="lg:hidden text-center mb-6 sm:mb-8">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-maroon rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                    <i class="fas fa-qrcode text-white text-2xl sm:text-3xl"></i>
                 </div>
-                <h1 class="text-3xl font-extrabold text-maroon">KISS</h1>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-maroon">KISS</h1>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                <h2 class="text-3xl font-bold text-gray-800 mb-2">Login</h2>
-                <p class="text-gray-500 mb-8">Enter your email and password to log in</p>
+            <div class="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
+                <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Login</h2>
+                <p class="text-gray-500 mb-6 sm:mb-8 text-sm sm:text-base">Enter your email and password to log in</p>
 
                 @if ($errors->any())
                     <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">

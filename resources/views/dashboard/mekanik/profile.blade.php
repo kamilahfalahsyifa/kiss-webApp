@@ -4,15 +4,15 @@
 @section('page_subtitle', 'Your account information')
 
 @section('content')
-<div class="max-w-2xl">
-    <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-        <div class="flex items-center gap-6 mb-6 pb-6 border-b border-gray-100">
-            <div class="w-20 h-20 bg-maroon rounded-full flex items-center justify-center">
-                <span class="text-white text-3xl font-bold">{{ substr(Auth::user()->name, 0, 1) }}</span>
+<div class="max-w-full sm:max-w-2xl">
+    <div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-100">
+        <div class="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-6 mb-4 sm:mb-6 pb-4 sm:pb-6 border-b border-gray-100">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-maroon rounded-full flex items-center justify-center">
+                <span class="text-white text-2xl sm:text-3xl font-bold">{{ substr(Auth::user()->name, 0, 1) }}</span>
             </div>
-            <div>
-                <h3 class="text-xl font-bold text-gray-800">{{ Auth::user()->name }}</h3>
-                <p class="text-gray-500">{{ Auth::user()->email }}</p>
+            <div class="text-center sm:text-left">
+                <h3 class="text-lg sm:text-xl font-bold text-gray-800">{{ Auth::user()->name }}</h3>
+                <p class="text-gray-500 text-sm sm:text-base">{{ Auth::user()->email }}</p>
                 <span class="badge bg-pink-bg text-maroon border-0 mt-2">Mekanik</span>
             </div>
         </div>

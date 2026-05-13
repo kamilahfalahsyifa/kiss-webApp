@@ -46,30 +46,42 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body { font-family: 'Inter', sans-serif; }
     </style>
+<style>
+        [x-cloak] { display: none !important; }
+    </style>
 </head>
-<body class="font-sans antialiased bg-pink-bg" x-data="{ fileModalOpen: false, itemModalOpen: false }">
-    <div class="flex min-h-screen">
-        <!-- Sidebar Component -->
-        @include('components.sidebar')
+<body class="font-sans antialiased bg-pink-bg" x-data="{ fileModalOpen: false, itemModalOpen: false, sidebarOpen: false }">
 
-        <!-- Main Content -->
-        <div class="flex-1 ml-64">
-            <!-- Top Navbar -->
-            <header class="bg-white shadow-sm sticky top-0 z-40 px-6 py-4">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <h2 class="text-xl font-bold text-gray-800">@yield('page_title', 'Dashboard')</h2>
-                        <p class="text-sm text-gray-500">@yield('page_subtitle', 'Welcome back')</p>
-                    </div>
-                    
+    <!-- Mobile Sidebar Overlay -->
+    <div x-show="sidebarOpen"
+         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+         class="fixed inset-0 bg-black/50 z-40 lg:hidden"
+         @click="sidebarOpen = false"></div>
+
+    <!-- Sidebar Component -->
+    @include('components.sidebar')
+
+    <!-- Main Content -->
+    <div class="flex-1 lg:ml-64 min-h-screen">
+        <!-- Top Navbar -->
+        <header class="bg-white shadow-sm sticky top-0 z-30 px-4 sm:px-6 py-3 sm:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Mobile Menu Button -->
+                <button @click="sidebarOpen = !sidebarOpen" class="lg:hidden btn btn-ghost btn-circle mr-2">
+                    <i class="fas fa-bars text-lg"></i>
+                </button>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-gray-800">@yield('page_title', 'Dashboard')</h2>
+                    <p class="text-xs sm:text-sm text-gray-500 hidden sm:block">@yield('page_subtitle', 'Welcome back')</p>
                 </div>
-            </header>
+            </div>
+        </header>
 
-            <!-- Page Content -->
-            <main class="p-6">
-                @yield('content')
-            </main>
-        </div>
+        <!-- Page Content -->
+        <main class="p-4 sm:p-6">
+            @yield('content')
+        </main>
     </div>
 </body>
 </html>

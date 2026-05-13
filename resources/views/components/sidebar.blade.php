@@ -30,49 +30,68 @@ if ($role === 'tere') {
 $menu = $role === 'mekanik' ? $mekanikMenu : $managementMenu;
 @endphp
 
-<aside class="w-64 bg-white shadow-lg flex flex-col fixed h-full z-50">
-    <!-- Logo -->
-    <div class="p-6 border-b border-gray-100">
-        <div class="flex items-center gap-3">
-            <img src="{{ asset('images/logo-kiss-scan.png') }}" alt="Logo KISS" class="w-10 h-10 object-contain">
-            <div>
-                <h1 class="font-bold text-xl text-maroon">KISS</h1>
-                <p class="text-xs text-gray-400">Keep It Simple System</p>
+<div x-data="{
+    isDesktop: window.innerWidth >= 1024,
+    init() {
+        window.addEventListener('resize', () => {
+            this.isDesktop = window.innerWidth >= 1024;
+            if (this.isDesktop) this.sidebarOpen = false;
+        });
+    }
+}">
+    <aside class="w-64 bg-white shadow-lg flex flex-col fixed h-full z-50 transition-transform duration-300 ease-in-out"
+           :class="{ 'translate-x-0': sidebarOpen || isDesktop, '-translate-x-full': !sidebarOpen && !isDesktop }"
+           x-show="sidebarOpen || isDesktop"
+           x-transition:enter="ease-out duration-300" x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+           x-transition:leave="ease-in duration-200" x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full"
+           @keydown.escape.window="sidebarOpen = false"
+           x-cloak>
+        <!-- Logo -->
+        <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <img src="{{ asset('images/logo-kiss-scan.png') }}" alt="Logo KISS" class="w-10 h-10 object-contain">
+                <div>
+                    <h1 class="font-bold text-xl text-maroon">KISS</h1>
+                    <p class="text-xs text-gray-400">Keep It Simple System</p>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="flex-1 p-4 overflow-y-auto">
-        <ul class="space-y-1">
-            @foreach($menu as $item)
-            <li>
-                <a href="{{ route($item['route']) }}"
-                   class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs($item['route']) ? 'bg-maroon text-white' : 'text-gray-600 hover:bg-pink-bg' }}">
-                    <i class="fas {{ $item['icon'] }} w-5"></i>
-                    <span class="font-medium">{{ $item['name'] }}</span>
-                </a>
-            </li>
-            @endforeach
-        </ul>
-    </nav>
-
-    <!-- User Profile -->
-    <div class="p-4 border-t border-gray-100">
-        <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center">
-                <span class="text-white font-semibold">{{ substr($user->name, 0, 1) }}</span>
-            </div>
-            <div class="flex-1 min-w-0">
-                <p class="font-semibold text-gray-800 text-sm truncate">{{ $user->name }}</p>
-                <p class="text-xs text-gray-500">{{ ucfirst($role) }}</p>
-            </div>
-        </div>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="w-full btn btn-ghost btn-sm text-error hover:bg-red-50">
-                <i class="fas fa-sign-out-alt mr-2"></i> Logout
+            <button @click="sidebarOpen = false" class="lg:hidden text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-lg"></i>
             </button>
-        </form>
-    </div>
-</aside>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 p-4 overflow-y-auto">
+            <ul class="space-y-1">
+                @foreach($menu as $item)
+                <li>
+                    <a href="{{ route($item['route']) }}"
+                       class="flex items-center gap-3 px-4 py-3 rounded-xl transition {{ request()->routeIs($item['route']) ? 'bg-maroon text-white' : 'text-gray-600 hover:bg-pink-bg' }}">
+                        <i class="fas {{ $item['icon'] }} w-5"></i>
+                        <span class="font-medium">{{ $item['name'] }}</span>
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+        </nav>
+
+        <!-- User Profile -->
+        <div class="p-4 border-t border-gray-100">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center">
+                    <span class="text-white font-semibold">{{ substr($user->name, 0, 1) }}</span>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="font-semibold text-gray-800 text-sm truncate">{{ $user->name }}</p>
+                    <p class="text-xs text-gray-500">{{ ucfirst($role) }}</p>
+                </div>
+            </div>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="w-full btn btn-ghost btn-sm text-error hover:bg-red-50">
+                    <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </button>
+            </form>
+        </div>
+    </aside>
+</div>
