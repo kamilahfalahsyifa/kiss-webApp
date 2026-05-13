@@ -4,11 +4,11 @@
 @section('page_subtitle', 'Update replacement activity')
 
 @section('content')
-<div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
-    <h3 class="text-lg font-bold text-gray-800 mb-6">Edit Replacement Activity</h3>
+<div class="bg-white rounded-2xl shadow-md p-4 sm:p-6 border border-gray-100">
+    <h3 class="text-base sm:text-lg font-bold text-gray-800 mb-4 sm:mb-6">Edit Replacement Activity</h3>
 
     @if($errors->any())
-    <div class="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-900">
+    <div class="mb-4 sm:mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-900 text-sm">
         <ul class="list-disc list-inside">
             @foreach($errors->all() as $error)
                 <li>{{ $error }}</li>
@@ -21,7 +21,7 @@
         @csrf
         @method('PUT')
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
                 <label class="block text-sm font-medium text-gray-900 mb-2">Code Number <span class="text-red-500">*</span></label>
                 <input type="text" name="code_number" value="{{ old('code_number', $activity->code_number) }}" required placeholder="e.g. PC-001"
@@ -58,33 +58,33 @@
                     class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('pic') border-red-500 @enderror">
             </div>
 
-            <div class="md:col-span-2">
+            <div class="sm:col-span-2">
                 <label class="block text-sm font-medium text-gray-900 mb-2">Activity / Notes</label>
                 <textarea name="notes" rows="3" placeholder="Describe the activity..."
                     class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('notes') border-red-500 @enderror">{{ old('notes', $activity->notes) }}</textarea>
             </div>
 
-            <div class="md:col-span-2">
+            <div class="sm:col-span-2">
                 <label class="block text-sm font-medium text-gray-900 mb-2">Upload Image (leave empty to keep current)</label>
                 <input type="file" name="image" accept="image/*"
-                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('image') border-red-500 @enderror">
+                    class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('image') border-red-500 @enderror text-sm">
                 <p class="text-xs text-gray-500 mt-1">Max size: 2MB. Formats: JPG, PNG, GIF</p>
 
                 @if($activity->image)
                 <div class="mt-3">
                     <p class="text-sm text-gray-500 mb-2">Current Image:</p>
-                    <img src="{{ asset($activity->image) }}" alt="Current Image"
-                         class="w-32 h-32 object-cover rounded-lg border border-gray-200">
+                    <img src="{{ asset('storage/' . $activity->image) }}" alt="Current Image"
+                         class="w-24 h-24 sm:w-32 sm:h-32 object-cover rounded-lg border border-gray-200">
                 </div>
                 @endif
             </div>
         </div>
 
-        <div class="mt-6 flex gap-4">
-            <button type="submit" class="btn bg-maroon text-white hover:bg-maroon-dark px-8">
+        <div class="mt-6 flex flex-col sm:flex-row gap-3">
+            <button type="submit" class="btn bg-maroon text-white hover:bg-maroon-dark px-6 sm:px-8 w-full sm:w-auto">
                 <i class="fas fa-save mr-2"></i> Update Activity
             </button>
-            <a href="{{ route('mekanik.activities.index') }}" class="btn btn-ghost">Cancel</a>
+            <a href="{{ route('mekanik.activities.index') }}" class="btn btn-ghost w-full sm:w-auto justify-center">Cancel</a>
         </div>
     </form>
 </div>

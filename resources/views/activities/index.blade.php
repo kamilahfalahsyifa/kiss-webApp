@@ -11,7 +11,7 @@
 </div>
 @endif
 
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
     <div>
         <h2 class="text-xl sm:text-2xl font-bold text-gray-800">Activity Management</h2>
         <p class="text-gray-500 text-xs sm:text-sm mt-1">Manage all replacement activities</p>
@@ -24,7 +24,7 @@
 </div>
 
 <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
-    <div class="p-5 border-b border-gray-200 bg-gray-50/50">
+    <div class="p-4 sm:p-5 border-b border-gray-200 bg-gray-50/50">
         <form method="GET" action="{{ route('mekanik.activities.index') }}" class="flex flex-col md:flex-row gap-3">
             <div class="flex-1">
                 <div class="relative">
@@ -57,7 +57,7 @@
         </form>
     </div>
 
-    <div class="overflow-x-auto p-5">
+    <div class="overflow-x-auto p-4 sm:p-5 -mx-4 sm:mx-0">
         <table class="table w-full">
             <thead class="bg-gray-50">
                 <tr>
@@ -100,9 +100,9 @@
                     </td>
                     <td class="px-4 py-4">
                         @if($item->image)
-                        <button type="button" onclick="showImage('{{ asset($item->image) }}')"
+                        <button type="button" onclick="showImage('{{ asset('storage/' . $item->image) }}')"
                                 class="text-maroon hover:underline text-sm flex items-center gap-1">
-                            <img src="{{ asset($item->image) }}"
+                            <img src="{{ asset('storage/' . $item->image) }}"
                                  alt="Image" class="w-12 h-12 object-cover rounded-lg border border-gray-200">
                         </button>
                         @else
