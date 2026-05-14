@@ -36,13 +36,13 @@
 
             <div>
                 <label class="block text-sm font-medium text-gray-900 mb-2">WO</label>
-                <input type="text" name="wo" value="{{ old('wo', $activity->wo) }}" placeholder="e.g. WO-001"
+                <input type="text" name="wo" value="{{ old('wo', $activity->wo) }}" placeholder="e.g. 12345678"
                     class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('wo') border-red-500 @enderror">
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-gray-900 mb-2">Reservasi</label>
-                <input type="text" name="reservasi" value="{{ old('reservasi', $activity->reservasi) }}" placeholder="e.g. RES-001"
+                <input type="text" name="reservasi" value="{{ old('reservasi', $activity->reservasi) }}" placeholder="e.g. 12345678"
                     class="w-full px-4 py-3 rounded-xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-maroon focus:ring-2 focus:ring-maroon/20 outline-none transition @error('reservasi') border-red-500 @enderror">
             </div>
 
