@@ -20,15 +20,22 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        $totalUnitHandled = ReplacementHistory::where('user_id', $user->id)->count();
-        $totalReplacement = ReplacementHistory::where('user_id', $user->id)->count();
+        $totalReplacement = ReplacementHistory::where('user_id', $user->id)
+            ->where('status', 'approved')
+            ->count();
+
         $totalReplacementToday = ReplacementHistory::where('user_id', $user->id)
-            ->whereDate('replacement_date', today())
+            ->where('status', 'approved')
+            ->whereDate('approved_at', today())
             ->count();
 
         $totalUnitHandled = ReplacementHistory::where('user_id', $user->id)
-            ->distinct('component_name')
-            ->count('component_name');
+            ->whereNotNull('code_number')
+            ->get()
+            ->map(fn($r) => explode('-', $r->code_number)[0])
+            ->filter()
+            ->unique()
+            ->count();
 
         $recentActivities = ReplacementHistory::with(['unit', 'component'])
             ->where('user_id', $user->id)
@@ -199,9 +206,19 @@ class DashboardController extends Controller
 
     public function managementIndex()
     {
-        $totalReplacement = ReplacementHistory::count();
-        $totalUnit = Unit::count();
-        $totalComponent = Component::count();
+        $totalReplacement = ReplacementHistory::where('status', 'approved')->count();
+
+        $totalReplacementToday = ReplacementHistory::where('status', 'approved')
+            ->whereDate('approved_at', today())
+            ->count();
+
+        $totalUnitHandled = ReplacementHistory::whereNotNull('code_number')
+            ->where('status', 'approved')
+            ->get()
+            ->map(fn($r) => explode('-', $r->code_number)[0])
+            ->filter()
+            ->unique()
+            ->count();
 
         $recentHistories = ReplacementHistory::with(['user', 'unit', 'component'])
             ->latest()
@@ -210,8 +227,8 @@ class DashboardController extends Controller
 
         return view('dashboard.management.dashboard', compact(
             'totalReplacement',
-            'totalUnit',
-            'totalComponent',
+            'totalUnitHandled',
+            'totalReplacementToday',
             'recentHistories'
         ));
     }

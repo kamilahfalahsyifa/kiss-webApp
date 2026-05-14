@@ -11,7 +11,8 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
 <!-- Stats Cards -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
     <x-stat-card label="Total Replacement" :value="$totalReplacement" icon="fas fa-sync-alt" iconColor="text-maroon" />
-    <x-stat-card label="Total Component" :value="$totalComponent" icon="fas fa-cogs" iconColor="text-purple-500" />
+    <x-stat-card label="Replacement Today" :value="$totalReplacementToday" icon="fas fa-check" iconColor="text-success" />
+    <x-stat-card label="Total Component" :value="$totalUnitHandled" icon="fas fa-cogs" iconColor="text-purple-500" />
 </div>
 
 <!-- Recent Activity -->
