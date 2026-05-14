@@ -10,9 +10,9 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
 @section('content')
 <!-- Stats Cards -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-    <x-stat-card label="Total Unit" :value="$totalUnitHandled" icon="fas fa-truck" iconColor="text-maroon" />
-    <x-stat-card label="Total Replacement" :value="$totalReplacement" icon="fas fa-clock" iconColor="text-warning" />
     <x-stat-card label="Replacement Today" :value="$totalReplacementToday" icon="fas fa-check" iconColor="text-success" />
+    <x-stat-card label="Total Replacement" :value="$totalReplacement" icon="fas fa-clock" iconColor="text-warning" />
+    <x-stat-card label="Total Component" :value="$totalUnitHandled" icon="fas fa-cogs" iconColor="text-maroon" />
 </div>
 
 <!-- Recent Activity -->
@@ -24,6 +24,8 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
                 <tr class="border-b border-gray-200">
                     <th class="text-gray-600 font-semibold">Code Number</th>
                     <th class="text-gray-600 font-semibold">HM Unit</th>
+                    <th class="text-gray-600 font-semibold">WO</th>
+                    <th class="text-gray-600 font-semibold">Reservasi</th>
                     <th class="text-gray-600 font-semibold">Date</th>
                     <th class="text-gray-600 font-semibold">Activity</th>
                     <th class="text-gray-600 font-semibold">Category</th>
@@ -37,6 +39,8 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
                 <tr class="border-b border-gray-100 hover:bg-pink-bg">
                     <td class="px-4 py-3 font-medium">{{ $activity->code_number ?: '-' }}</td>
                     <td class="px-4 py-3">{{ $activity->hm_km }}</td>
+                    <td class="px-4 py-3">{{ $activity->wo ?: '-' }}</td>
+                    <td class="px-4 py-3">{{ $activity->reservasi ?: '-' }}</td>
                     <td class="px-4 py-3">{{ $activity->replacement_date->format('d M Y') }}</td>
                     <td class="px-4 py-3 text-sm">{{ $activity->notes ? Str::limit($activity->notes, 40) : '-' }}</td>
                     <td class="px-4 py-3">{{ $activity->category ?: '-' }}</td>
@@ -56,7 +60,7 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" class="py-6 text-center text-gray-500">No recent activity</td>
+                    <td colspan="10" class="py-6 text-center text-gray-500">No recent activity</td>
                 </tr>
                 @endforelse
             </tbody>

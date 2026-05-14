@@ -63,6 +63,8 @@
                 <tr>
                     <th class="text-gray-600 font-semibold px-4 py-4 text-left">Code Number</th>
                     <th class="text-gray-600 font-semibold px-4 py-4 text-left">HM Unit</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">WO</th>
+                    <th class="text-gray-600 font-semibold px-4 py-4 text-left">Reservasi</th>
                     <th class="text-gray-600 font-semibold px-4 py-4 text-left">Date</th>
                     <th class="text-gray-600 font-semibold px-4 py-4 text-left">Activity</th>
                     <th class="text-gray-600 font-semibold px-4 py-4 text-left">Category</th>
@@ -78,6 +80,8 @@
                 <tr class="border-b border-gray-100 hover:bg-pink-bg/50 transition">
                     <td class="px-4 py-4 font-medium text-gray-800">{{ $item->code_number ?: '-' }}</td>
                     <td class="px-4 py-4 text-gray-600">{{ $item->hm_km }}</td>
+                    <td class="px-4 py-4 text-gray-600">{{ $item->wo ?: '-' }}</td>
+                    <td class="px-4 py-4 text-gray-600">{{ $item->reservasi ?: '-' }}</td>
                     <td class="px-4 py-4 text-gray-600">{{ $item->replacement_date->format('d M Y') }}</td>
                     <td class="px-4 py-4 text-gray-600 text-sm max-w-xs truncate">{{ $item->notes ? Str::limit($item->notes, 30) : '-' }}</td>
                     <td class="px-4 py-4">
@@ -139,7 +143,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="10" class="px-4 py-12 text-center text-gray-500">
+                    <td colspan="12" class="px-4 py-12 text-center text-gray-500">
                         <i class="fas fa-inbox text-4xl mb-4 text-gray-300"></i>
                         <p class="text-lg font-medium">No records found</p>
                         <p class="text-sm">Start by adding a new activity</p>

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->date('replacement_date');
             $table->string('hm_km');
+            $table->string('wo')->nullable();
+            $table->string('reservasi')->nullable();
             $table->text('notes')->nullable();
             $table->string('image')->nullable();
             $table->enum('status', ['pending', 'completed', 'cancelled'])->default('pending');

@@ -15,6 +15,8 @@ class ReplacementHistory extends Model
         'user_id',
         'replacement_date',
         'hm_km',
+        'wo',
+        'reservasi',
         'notes',
         'image',
         'status',

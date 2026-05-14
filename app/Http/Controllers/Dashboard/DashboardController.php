@@ -20,11 +20,15 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
-        $totalUnitHandled = Unit::count();
+        $totalUnitHandled = ReplacementHistory::where('user_id', $user->id)->count();
         $totalReplacement = ReplacementHistory::where('user_id', $user->id)->count();
         $totalReplacementToday = ReplacementHistory::where('user_id', $user->id)
             ->whereDate('replacement_date', today())
             ->count();
+
+        $totalUnitHandled = ReplacementHistory::where('user_id', $user->id)
+            ->distinct('component_name')
+            ->count('component_name');
 
         $recentActivities = ReplacementHistory::with(['unit', 'component'])
             ->where('user_id', $user->id)
@@ -59,6 +63,8 @@ class DashboardController extends Controller
         $validated = $request->validate([
             'code_number' => 'required|string|max:50',
             'hm_km' => 'required|string|max:50',
+            'wo' => 'nullable|string|max:100',
+            'reservasi' => 'nullable|string|max:100',
             'replacement_date' => 'required|date',
             'category' => 'required|string|max:50',
             'component_name' => 'required|string|max:100',
@@ -88,6 +94,8 @@ class DashboardController extends Controller
             ->where('code_number', 'like', "%{$search}%")
             ->orWhere('component_name', 'like', "%{$search}%")
             ->orWhere('hm_km', 'like', "%{$search}%")
+            ->orWhere('wo', 'like', "%{$search}%")
+            ->orWhere('reservasi', 'like', "%{$search}%")
             ->orWhere('notes', 'like', "%{$search}%")
         ));
 
@@ -218,6 +226,8 @@ class DashboardController extends Controller
             ->where('code_number', 'like', "%{$search}%")
             ->orWhere('component_name', 'like', "%{$search}%")
             ->orWhere('hm_km', 'like', "%{$search}%")
+            ->orWhere('wo', 'like', "%{$search}%")
+            ->orWhere('reservasi', 'like', "%{$search}%")
             ->orWhere('notes', 'like', "%{$search}%")
         ));
 

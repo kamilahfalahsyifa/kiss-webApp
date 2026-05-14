@@ -11,7 +11,6 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
 <!-- Stats Cards -->
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
     <x-stat-card label="Total Replacement" :value="$totalReplacement" icon="fas fa-sync-alt" iconColor="text-maroon" />
-    <x-stat-card label="Total Unit" :value="$totalUnit" icon="fas fa-truck" iconColor="text-blue-500" />
     <x-stat-card label="Total Component" :value="$totalComponent" icon="fas fa-cogs" iconColor="text-purple-500" />
 </div>
 
@@ -24,6 +23,8 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
                 <tr class="border-b border-gray-200">
                     <th class="text-gray-600 font-semibold">Code Number</th>
                     <th class="text-gray-600 font-semibold">HM Unit</th>
+                    <th class="text-gray-600 font-semibold">WO</th>
+                    <th class="text-gray-600 font-semibold">Reservasi</th>
                     <th class="text-gray-600 font-semibold">Date</th>
                     <th class="text-gray-600 font-semibold">Activity</th>
                     <th class="text-gray-600 font-semibold">Category</th>
@@ -37,6 +38,8 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
                 <tr class="border-b border-gray-100 hover:bg-pink-bg">
                     <td class="px-4 py-3 font-medium">{{ $history->code_number ?: '-' }}</td>
                     <td class="px-4 py-3">{{ $history->hm_km }}</td>
+                    <td class="px-4 py-3">{{ $history->wo ?: '-' }}</td>
+                    <td class="px-4 py-3">{{ $history->reservasi ?: '-' }}</td>
                     <td class="px-4 py-3">{{ $history->replacement_date->format('d M Y') }}</td>
                     <td class="px-4 py-3 text-sm">{{ $history->notes ? Str::limit($history->notes, 40) : '-' }}</td>
                     <td class="px-4 py-3">{{ $history->category ?: '-' }}</td>
@@ -56,7 +59,7 @@ $roleLabels = ['mekanik' => 'Mekanik', 'gl' => 'GL', 'tere' => 'Tere', 'planner'
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="8" class="py-6 text-center text-gray-500">No records found</td>
+                    <td colspan="10" class="py-6 text-center text-gray-500">No records found</td>
                 </tr>
                 @endforelse
             </tbody>

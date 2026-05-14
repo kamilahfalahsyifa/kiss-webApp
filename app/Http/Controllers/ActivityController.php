@@ -23,6 +23,8 @@ class ActivityController extends Controller
             ->where('code_number', 'like', "%{$search}%")
             ->orWhere('component_name', 'like', "%{$search}%")
             ->orWhere('hm_km', 'like', "%{$search}%")
+            ->orWhere('wo', 'like', "%{$search}%")
+            ->orWhere('reservasi', 'like', "%{$search}%")
         ));
 
         $status = $request->get('status');
@@ -44,6 +46,8 @@ class ActivityController extends Controller
         $validated = $request->validate([
             'code_number' => 'required|string|max:50',
             'hm_km' => 'required|string|max:50',
+            'wo' => 'nullable|string|max:100',
+            'reservasi' => 'nullable|string|max:100',
             'replacement_date' => 'required|date',
             'category' => 'required|string|max:50',
             'component_name' => 'required|string|max:100',
@@ -92,6 +96,8 @@ class ActivityController extends Controller
         $validated = $request->validate([
             'code_number' => 'required|string|max:50',
             'hm_km' => 'required|string|max:50',
+            'wo' => 'nullable|string|max:100',
+            'reservasi' => 'nullable|string|max:100',
             'replacement_date' => 'required|date',
             'category' => 'required|string|max:50',
             'component_name' => 'required|string|max:100',
