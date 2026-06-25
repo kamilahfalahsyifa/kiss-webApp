@@ -21,6 +21,7 @@
         "vue-tsc": "^2.0.24"
     },
     "dependencies": {
-        "daisyui": "^5.5.19"
+        "daisyui": "^5.5.19",
+        "ziggy-js": "^2.6.3"
     }
 }
